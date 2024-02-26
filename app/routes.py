@@ -1,4 +1,4 @@
-from flask import render_template,request, flash, redirect, url_for
+from flask import render_template, request, flash, redirect, url_for, jsonify
 from app import app
 from app.forms import LoginForm
 
@@ -28,3 +28,10 @@ def login_page():
         return redirect(url_for('index'))
 
     return render_template('login.html', title='Sign In', form=form)
+
+@app.route('/tester')
+def tester():
+    cheeky_names = {'leader': 'David',
+                    'advisor': 'Pablo'}
+
+    return jsonify(cheeky_names)
