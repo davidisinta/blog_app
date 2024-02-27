@@ -1,12 +1,13 @@
 import './App.css';
-import React, {useState,useEffect} from "react";
-
-
+import { BrowserRouter, Route, Routes } from 'react-router-dom'
+import React, { useState, useEffect } from "react";
+import Login from "./components/Login";
+import Home from "./components/Home"
+import About from "./components/About";
 
 
 function App() {
-
-     const [data, setData] = useState(null);
+  const [data, setData] = useState(null);
 
   useEffect(() => {
     fetch('/tester')
@@ -16,17 +17,22 @@ function App() {
   }, []);
 
   return (
+
       <div className="App">
-          heyy theree
+        <BrowserRouter>
+          <Routes>
+            <Route path="/" element={<Home />}/>
+            <Route path="/login" element={<Login />}/>
+              <Route path="/about" element={<About />}/>
 
-          <div>
-              { JSON.stringify(data) }
-          </div>
-
+          </Routes>
+        </BrowserRouter>
       </div>
 
 
-  );
+  )
+      ;
 }
 
-    export default App;
+export default App;
+
